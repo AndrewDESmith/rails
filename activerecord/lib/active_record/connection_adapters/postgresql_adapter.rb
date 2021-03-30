@@ -631,7 +631,8 @@ module ActiveRecord
 
       # Enable standard-conforming strings if available.
       def set_standard_conforming_strings
-        old, self.client_min_messages = client_min_messages, 'panic'
+        old, self.client_min_messages = client_min_messages, 'warning'
+        puts "Patched Rails 4.1 to work with PostgreSQL 12."
         execute('SET standard_conforming_strings = on', 'SCHEMA') rescue nil
       ensure
         self.client_min_messages = old
